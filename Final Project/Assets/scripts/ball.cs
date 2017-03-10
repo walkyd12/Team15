@@ -47,7 +47,10 @@ public class ball : MonoBehaviour {
     {
         holdThrowHandler();
     }
-
+   public bool getReleased()
+    {
+        return released;
+    }
 
     void holdThrowHandler()
     {
