@@ -6,6 +6,7 @@ public class ball : MonoBehaviour {
     Vector3 target;
     Vector3 prevTarget;
     public Rigidbody rb;
+    public SphereCollider rc;
     Vector3[] lastFive;
     int fiveC = 0;
     public float SZP = 0;
@@ -16,6 +17,7 @@ public class ball : MonoBehaviour {
         target = transform.position;
         prevTarget = transform.position;
         rb = GetComponent<Rigidbody>();
+        rc = GetComponent<SphereCollider>();
         lastFive = new Vector3[5];
         
     }
@@ -31,7 +33,7 @@ public class ball : MonoBehaviour {
     void OnCollisionEnter(Collision c)
     {
 
-        rb.velocity = Vector3.Reflect(rb.velocity, Vector3.right);
+        //rb.velocity = Vector3.Reflect(rb.velocity, c.contacts[1].normal);
         
     }
     void OnTriggerEnter(Collider c)
@@ -48,9 +50,21 @@ public class ball : MonoBehaviour {
             holdAllowed = false;
         }
     }
-   
+
+    public LayerMask collisionMask;
     void Update()
     {
+        Ray ray = new Ray(transform.position, rb.velocity);
+        RaycastHit hit;
+       
+        if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude)+.08f, collisionMask))
+            {
+            print("asdf");
+            Vector3 reflectDir = Vector3.Reflect(rb.velocity, hit.normal);
+            //float rotation = 90 - (Mathf.Atan2(reflectDir.y, reflectDir.x)*Mathf.Rad2Deg);
+            //transform.eulerAngles = new Vector3(0,0,rotation);
+            rb.velocity = reflectDir;
+        }
         holdThrowHandler();
     }
    public bool getReleased()
@@ -60,6 +74,8 @@ public class ball : MonoBehaviour {
 
     void holdThrowHandler()
     {
+        print(transform.position);
+        print(target);
         if (holdAllowed == true)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
@@ -67,7 +83,13 @@ public class ball : MonoBehaviour {
                 prevTarget = target;
                 target = GetWorldPositionOnPlane(Input.mousePosition, SZP);
                 target.z = SZP;
-                transform.position = target;
+                //if(rc.bounds.Contains(target))
+                //{
+                    transform.position = target;
+                   
+                //}
+              
+
                 if (fiveC >= 5)
                 {
                     fiveC = 0;
@@ -97,6 +119,9 @@ public class ball : MonoBehaviour {
     void release()
     {
         rb.velocity = (calThrow(lastFive)) * 25;
+        float spinDir = Random.Range(-.5f, .5f);
+        Vector3 v = new Vector3(0, 0, spinDir);
+        rb.AddTorque(v);
         released = true;
     }
 

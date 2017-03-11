@@ -35,6 +35,14 @@ public class cameraBehavior : MonoBehaviour {
             smooth.z = -10;
             transform.position = smooth;
         }
+        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            changeZoomLevel(thisCamera.fieldOfView - 1);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            changeZoomLevel(thisCamera.fieldOfView + 1);
+        }
 
     }
     
