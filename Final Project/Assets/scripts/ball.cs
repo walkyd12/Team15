@@ -6,6 +6,7 @@ public class ball : MonoBehaviour {
     Vector3 target;
     Vector3 prevTarget;
     public Rigidbody rb;
+    public SphereCollider rc;
     Vector3[] lastFive;
     int fiveC = 0;
     public float SZP = 0;
@@ -16,6 +17,7 @@ public class ball : MonoBehaviour {
         target = transform.position;
         prevTarget = transform.position;
         rb = GetComponent<Rigidbody>();
+        rc = GetComponent<SphereCollider>();
         lastFive = new Vector3[5];
         
     }
@@ -54,8 +56,8 @@ public class ball : MonoBehaviour {
     {
         Ray ray = new Ray(transform.position, rb.velocity);
         RaycastHit hit;
-        //print(Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude) + .05f, collisionMask));
-        if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude)+.07f, collisionMask))
+       
+        if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude)+.08f, collisionMask))
             {
             print("asdf");
             Vector3 reflectDir = Vector3.Reflect(rb.velocity, hit.normal);
@@ -72,6 +74,8 @@ public class ball : MonoBehaviour {
 
     void holdThrowHandler()
     {
+        print(transform.position);
+        print(target);
         if (holdAllowed == true)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
@@ -79,7 +83,13 @@ public class ball : MonoBehaviour {
                 prevTarget = target;
                 target = GetWorldPositionOnPlane(Input.mousePosition, SZP);
                 target.z = SZP;
-                transform.position = target;
+                //if(rc.bounds.Contains(target))
+                //{
+                    transform.position = target;
+                   
+                //}
+              
+
                 if (fiveC >= 5)
                 {
                     fiveC = 0;
