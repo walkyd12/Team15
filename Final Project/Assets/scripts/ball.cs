@@ -28,6 +28,12 @@ public class ball : MonoBehaviour {
         xy.Raycast(ray, out distance);
         return ray.GetPoint(distance);
     }
+    void OnCollisionEnter(Collision c)
+    {
+
+        rb.velocity = Vector3.Reflect(rb.velocity, Vector3.right);
+        
+    }
     void OnTriggerEnter(Collider c)
     {
         if (c.tag == "holdarea")
