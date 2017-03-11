@@ -90,7 +90,7 @@ public class ball : MonoBehaviour {
     }
     void release()
     {
-        rb.velocity = (calThrow(lastFive)) * 50;
+        rb.velocity = (calThrow(lastFive)) * 25;
         released = true;
     }
 
