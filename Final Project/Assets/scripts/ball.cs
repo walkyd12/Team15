@@ -52,19 +52,23 @@ public class ball : MonoBehaviour {
     }
 
     public LayerMask collisionMask;
-    void Update()
+    void LateUpdate()
     {
         Ray ray = new Ray(transform.position, rb.velocity);
         RaycastHit hit;
-       
-        if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude)+.08f, collisionMask))
-            {
+
+        if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude) + .08f, collisionMask))
+        {
             print("asdf");
             Vector3 reflectDir = Vector3.Reflect(rb.velocity, hit.normal);
             //float rotation = 90 - (Mathf.Atan2(reflectDir.y, reflectDir.x)*Mathf.Rad2Deg);
             //transform.eulerAngles = new Vector3(0,0,rotation);
             rb.velocity = reflectDir;
         }
+    }
+    void Update()
+    {
+      
         holdThrowHandler();
     }
    public bool getReleased()
@@ -135,21 +139,21 @@ public class ball : MonoBehaviour {
         reVec.x = reVec.x / 5;
         reVec.y = reVec.y / 5;
         reVec.z = SZP;
-        if (reVec.x > 50)
+        if (reVec.x > 10f)
         {
-            reVec.x = 50;
+            reVec.x = 10f;
         }
-        if (reVec.y > 50)
+        if (reVec.y > 10f)
         {
-            reVec.y = 50;
+            reVec.y = 10f;
         }
-        if (reVec.x < -50)
+        if (reVec.x < -10f)
         {
-            reVec.x = -50;
+            reVec.x = -10f;
         }
-        if (reVec.y < -50)
+        if (reVec.y < -10f)
         {
-            reVec.y = -50;
+            reVec.y = -10f;
         }
 
         return reVec;
