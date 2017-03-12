@@ -12,26 +12,16 @@ public class cameraBehavior : MonoBehaviour {
     public Camera thisCamera;
     Vector3 velocity = Vector3.zero;
 
-    // Use this for initialization
     void Start () {
         thisCamera = GetComponent<Camera>();
-
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        //changeZoomLevel(zoom);
         ballLocation = trackBall(currentBall);
         if (ballIsReleased == true)
-        {
-            
-            diffX = transform.position.x - ballLocation.x;
-            diffY = transform.position.y - ballLocation.y;
-            float currentX = transform.position.x;
-            float currentY = transform.position.y;
+        { 
             Vector3 posChange = transform.position;
-            
-            Vector3 smooth = (Vector3.SmoothDamp(transform.position, ballLocation, ref velocity, .1f));
+            Vector3 smooth = (Vector3.SmoothDamp(transform.position, ballLocation, ref velocity, .08f));
             smooth.z = -10;
             transform.position = smooth;
         }
@@ -43,7 +33,6 @@ public class cameraBehavior : MonoBehaviour {
         {
             changeZoomLevel(thisCamera.fieldOfView + 1);
         }
-
     }
     
     Vector3 trackBall(ball b)
@@ -55,8 +44,6 @@ public class cameraBehavior : MonoBehaviour {
 
     public void changeZoomLevel(float desiredFieldOfView)
     {
-
-        thisCamera.fieldOfView = desiredFieldOfView;
-        
+        thisCamera.fieldOfView = desiredFieldOfView;   
     }
 }
