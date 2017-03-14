@@ -26,7 +26,7 @@ public class ball : MonoBehaviour
 
     void Update()
     {
-        bounce();  //calculates bounce
+        //bounce();  //calculates bounce
         holdThrowHandler(); //handles logic behind throwing ball
     }
 
@@ -42,7 +42,7 @@ public class ball : MonoBehaviour
             rb.velocity = reflectDir;
         }
     }
-    //handles logic involved in throwning ball
+    //handles logic involved in throwing ball
     void holdThrowHandler()
     {
         prevTarget = target;
