@@ -15,6 +15,18 @@ public class ball : MonoBehaviour
     bool released = false;
     bool holding = false;
     public LayerMask collisionMask;
+
+    //currentCharacter: set to 1 for hugo, 2  for chihuahua, 3 for StBernard
+    public int currentCharacter = 0; 
+
+    public void changeCurrentCharacter()
+    {
+        if(currentCharacter == 3)
+        {
+            currentCharacter = 0;
+        }
+        currentCharacter++;     
+    }
     void Start()
     {
         target = transform.position;
@@ -22,6 +34,7 @@ public class ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rc = GetComponent<SphereCollider>();
         lastFive = new Vector3[5];
+        changeCurrentCharacter();
     }
 
     void Update()
