@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class firehydrant : MonoBehaviour {
     bool smashed = false;
+    Animator ani;
+
 void OnCollisionEnter(Collision c)
     {
         print("smashing!");
@@ -19,11 +21,16 @@ void OnTriggerStay(Collider other)
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
         }
     }
+    void Start()
+    {
+        ani = GetComponent<Animator>();
+    }
     void Update()
     {
         if(smashed == true)
         {
-            print("smashed");
+            ani.SetBool("isSmashed", true);
+            
         }
     }
 }
