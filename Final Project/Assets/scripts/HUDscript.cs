@@ -4,23 +4,39 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class HUDscript : MonoBehaviour {
-    public ball Hugo;
-    public ball Chihuahua;
-    public ball StBernard;
-     ball HugoPrefab;
-     ball ChihuahuaPrefab;
-     ball StBernardPrefab;
+
+    public ball HugoPrefab;
+    public ball ChihuahuaPrefab;
+    public ball StBernardPrefab;
+    ball Hugo;
+    ball Chihuahua;
+    ball StBernard;
+    Vector3 center;
+    Vector3 storage;
     int currentCharacter;
+    ball currentBall;
+    bool outOfThrows;
     // Use this for initialization
     void Start () {
         currentCharacter = 0;
+
+         center = new Vector3(0, 0, 0);
+        storage = new Vector3(300, 300, 0);
+        StBernard = Instantiate(StBernardPrefab, center, transform.rotation);
+        Hugo = Instantiate(HugoPrefab, center, transform.rotation);
+        Chihuahua = Instantiate(ChihuahuaPrefab, center, transform.rotation);
+        storeAllCharacters();
         switchCharacter();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    public ball getCurrentBall()
+    {
+        return currentBall;
+    }
 
     public void resetLevel(string levelName)
     {
@@ -29,30 +45,84 @@ public class HUDscript : MonoBehaviour {
 
     public void switchCharacter()
     {
-        currentCharacter++;
-        if (currentCharacter == 1)
-        {
-            print("111");
 
-            HugoPrefab = Resources.Load("prefabs/Hugo") as ball;
-            Hugo = ball.Instantiate(HugoPrefab, transform.position, transform.rotation);
-            print("111111");
-        }
-        else if (currentCharacter == 2)
+        bool switched = false;
+        int counter = 0;
+        if (outOfThrows == false)
         {
-            print("222");
+            while (switched == false)
+            {
+                currentCharacter++;
+                if (currentCharacter == 1)
+                {
+                    if (StBernard.getHoldAllowed() == true)
+                    {
+                        storeCharacter(StBernard);
+                    }
+                    if (Hugo.getStorage() == true)
+                    {
+                        centerCharacter(Hugo);
+                        currentBall = Hugo;
+                        switched = true;
+                    }
 
-            ChihuahuaPrefab = Resources.Load("prefabs/Chihuahua") as ball;
-            Chihuahua = ball.Instantiate(ChihuahuaPrefab, transform.position, transform.rotation);
-        }
-        else
-        {
-            print("333");
+                }
+                else if (currentCharacter == 2)
+                {
+                    if (Hugo.getHoldAllowed() == true)
+                    {
+                        storeCharacter(Hugo);
+                    }
+                    if (Chihuahua.getStorage() == true)
+                    {
+                        centerCharacter(Chihuahua);
+                        currentBall = Chihuahua;
+                        switched = true;
+                    }
 
-            StBernardPrefab = Resources.Load("prefabs/StBernard") as ball;
-            StBernard = ball.Instantiate(StBernardPrefab, transform.position, transform.rotation);
-            currentCharacter = 0;
-            print(currentCharacter);
+                }
+                else
+                {
+                    if (Chihuahua.getHoldAllowed() == true )
+                    {
+                        storeCharacter(Chihuahua);
+                    }
+                    if (StBernard.getStorage() == true)
+                    {
+                        centerCharacter(StBernard);
+                        currentBall = StBernard;
+                        switched = true;
+                    }
+                    currentCharacter = 0;
+                }
+                counter++;
+
+                if (counter > 3)
+                {
+                    switched = true;
+                    outOfThrows = true;
+                }
+
+            }
         }
+}
+    
+
+
+    void centerCharacter(ball b)
+    {
+        b.transform.position = center;
+        b.setStorage(0);
+    }
+    void storeCharacter(ball b)
+    {
+        b.transform.position = storage;
+        b.setStorage(1);
+    }
+    void storeAllCharacters()
+    {
+        storeCharacter(Hugo);
+        storeCharacter(Chihuahua);
+        storeCharacter(StBernard);
     }
 }

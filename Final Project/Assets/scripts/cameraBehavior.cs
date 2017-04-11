@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class cameraBehavior : MonoBehaviour {
     Vector3 ballLocation;
-    public ball currentBall;
+    ball currentBall;
+    public HUDscript HUD;
     float diffX;
     float diffY;
     float zoom = 13;
     bool ballIsReleased;
     public Camera thisCamera;
+    
     Vector3 velocity = Vector3.zero;
 
     void Start () {
         thisCamera = GetComponent<Camera>();
+       
 	}
 	
 	void Update () {
+        currentBall = HUD.getCurrentBall();
         ballLocation = trackBall(currentBall);
         if (ballIsReleased == true)
         { 
@@ -34,6 +38,8 @@ public class cameraBehavior : MonoBehaviour {
             changeZoomLevel(thisCamera.fieldOfView + 1);
         }
     }
+
+  
     
     Vector3 trackBall(ball b)
     {

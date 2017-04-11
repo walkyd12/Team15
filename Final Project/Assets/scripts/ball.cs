@@ -15,7 +15,7 @@ public class ball : MonoBehaviour
     bool released = false;
     bool holding = false;
     public LayerMask collisionMask;
-
+    bool inStorage;
     //currentCharacter: set to 1 for hugo, 2  for chihuahua, 3 for StBernard
     public int currentCharacter = 0; 
 
@@ -40,9 +40,24 @@ public class ball : MonoBehaviour
     void Update()
     {
         //bounce();  //calculates bounce
-        holdThrowHandler(); //handles logic behind throwing ball
+        if (inStorage == false)
+        {
+            holdThrowHandler(); //handles logic behind throwing ball
+        }
     }
-
+    public void setStorage(int x)
+    {
+        if (x == 0)
+        {
+            inStorage = false;
+           // holdAllowed = false;
+        }
+        else
+        {
+            inStorage = true;
+            holdAllowed = true;
+        }
+    }
     //calculates bounce, might end up getting rid of this
     void bounce()
     {
@@ -120,6 +135,14 @@ public class ball : MonoBehaviour
     {
         return released;
     }
+    public bool getHoldAllowed()
+    {
+        return holdAllowed;
+    }
+    public bool getStorage()
+    {
+        return inStorage;
+    }
 
     //handles calculation of direction and speed of throw
     Vector3 calThrow(Vector3[] array)
@@ -167,7 +190,7 @@ public class ball : MonoBehaviour
     {
         if (c.tag == "holdarea")
         {
-            holdAllowed = true;
+           // holdAllowed = true;
         }
     }
     //this is called when leaving collider of trigger
@@ -177,5 +200,9 @@ public class ball : MonoBehaviour
         {
             holdAllowed = false;
         }
+    }
+    public void allowHold()
+    {
+        holdAllowed = true;
     }
 }
