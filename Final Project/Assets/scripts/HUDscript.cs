@@ -113,11 +113,14 @@ public class HUDscript : MonoBehaviour {
     {
         b.transform.position = center;
         b.setStorage(0);
+        
     }
     void storeCharacter(ball b)
     {
         b.transform.position = storage;
         b.setStorage(1);
+        
+
     }
     void storeAllCharacters()
     {
