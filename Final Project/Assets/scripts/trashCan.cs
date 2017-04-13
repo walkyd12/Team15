@@ -8,7 +8,7 @@ public class trashCan : MonoBehaviour
 
     void OnCollisionEnter(Collision c)
     {
-        print("smashing!");
+        
         smashed = true;
     }
     void OnTriggerStay(Collider other)
@@ -16,7 +16,7 @@ public class trashCan : MonoBehaviour
 
         if (smashed == true)
         {
-            print("aaaaaa");
+            
             Vector3 dir = new Vector3(500, -1000, 0);
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
         }
