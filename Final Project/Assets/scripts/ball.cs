@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ball : MonoBehaviour
 {
+    
     Vector3 target;
     Vector3 prevTarget;
     public Rigidbody rb;
@@ -17,7 +18,7 @@ public class ball : MonoBehaviour
     public LayerMask collisionMask;
     bool inStorage;
     //currentCharacter: set to 1 for hugo, 2  for chihuahua, 3 for StBernard
-    public int currentCharacter = 0; 
+    public int currentCharacter; 
 
     public void changeCurrentCharacter()
     {
@@ -34,7 +35,7 @@ public class ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rc = GetComponent<SphereCollider>();
         lastFive = new Vector3[5];
-        changeCurrentCharacter();
+        //changeCurrentCharacter();
     }
 
     void Update()
@@ -50,7 +51,7 @@ public class ball : MonoBehaviour
         if (x == 0)
         {
             inStorage = false;
-           // holdAllowed = false;
+            holdAllowed = true;
         }
         else
         {
@@ -65,7 +66,7 @@ public class ball : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Time.deltaTime * (rb.velocity.magnitude) + .08f, collisionMask))
         {
-            print("asdf");
+            
             Vector3 reflectDir = Vector3.Reflect(rb.velocity, hit.normal);
             rb.velocity = reflectDir;
         }
