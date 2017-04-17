@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine.SceneManagement;
 using PlayFab;
 using PlayFab.ClientModels;
+using System.Linq;
 using UnityEngine;
 
 public class HUDscript : MonoBehaviour {
-
+    public static int points=0;
+    public delegate void SuccessfulLoginHandler(string details, MessageDisplayStyle style);
+    public static event SuccessfulLoginHandler OnLoginSuccess;
     public ball HugoPrefab;
     public ball ChihuahuaPrefab;
     public ball StBernardPrefab;
+    static int sum;
+    public static short wins;
     ball Hugo;
     ball Chihuahua;
     ball StBernard;
@@ -25,6 +31,14 @@ public class HUDscript : MonoBehaviour {
         private set;
     }
 
+    private static System.Random random = new System.Random();
+    public static string RandomString(int length)
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return new string(Enumerable.Repeat(chars, length)
+          .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
     private void OnLoggedIn(LoginResult result)
     {
         UserId = result.PlayFabId;
@@ -34,6 +48,20 @@ public class HUDscript : MonoBehaviour {
     {
         Debug.LogError("Error logging in player with custom ID:");
         Debug.LogError(error);
+    }
+
+    private static void OnGetUserStatisticsSuccess(GetPlayerStatisticsResult result)
+    {
+        //TODO update to use new 
+
+        PF_Bridge.RaiseCallbackSuccess("", PlayFabAPIMethods.GetUserStatistics, MessageDisplayStyle.none);
+        foreach (var each in result.Statistics)
+            PF_PlayerData.userStatistics[each.StatisticName] = each.Value;
+    }
+
+    private static void OnGetUserStatisticsError(PlayFabError error)
+    {
+        PF_Bridge.RaiseCallbackError(error.ErrorMessage, PlayFabAPIMethods.GetUserStatistics, MessageDisplayStyle.error);
     }
 
     // Use this for initialization
@@ -47,7 +75,6 @@ public class HUDscript : MonoBehaviour {
         Chihuahua = Instantiate(ChihuahuaPrefab, center, transform.rotation);
         storeAllCharacters();
         switchCharacter();
-        
     }
 	
 	// Update is called once per frame
@@ -59,24 +86,68 @@ public class HUDscript : MonoBehaviour {
         return currentBall;
     }
 
+    public static void RaiseLoginSuccessEvent(string details, MessageDisplayStyle style)
+    {
+        if (OnLoginSuccess != null)
+            OnLoginSuccess(details, style);
+    }
     public void login(string x)
     {
         var request = new LoginWithCustomIDRequest
         {
             TitleId = "792",
             CreateAccount = true,
-            CustomId = "8fa79815413d472d" // Just a temp value for testing.
+            CustomId = RandomString(16) // Just a temp value for testing.
         };
 
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoggedIn, OnLoginError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginResult, OnLoginError);
+
+
     }
+
+    private static void OnLoginResult(PlayFab.ClientModels.LoginResult result) //LoginResult
+    {
+        GetPlayerStatisticsRequest request2 = new GetPlayerStatisticsRequest();
+        PlayFabClientAPI.GetPlayerStatistics(request2, OnGetUserStatisticsSuccess, OnGetUserStatisticsError);
+        PF_PlayerData.PlayerId = result.PlayFabId;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer || Application.isEditor)
+        {
+
+
+           }
+
+        PF_Bridge.RaiseCallbackSuccess(string.Empty, PlayFabAPIMethods.GenericLogin, MessageDisplayStyle.none);
+        if (OnLoginSuccess != null)
+
+            OnLoginSuccess(string.Format("SUCCESS: {0}", result.SessionTicket), MessageDisplayStyle.error);
+    }
+
+    public void playerstatistics(string x)
+    {
+        GetPlayerStatisticsRequest request2 = new GetPlayerStatisticsRequest();
+        PlayFabClientAPI.GetPlayerStatistics(request2, OnGetUserStatisticsSuccess, OnGetUserStatisticsError);
+    }
+
+    public void updateplayerstats(string x)
+    {
+        // playerstatistics("h");
+        // foreach(var each in userStatistics)
+        // {
+        //     print(each.Value);
+        // }
+        Dictionary<string, int> updates = new Dictionary<string, int>();
+        updates.Add("points", 0);
+        updates.Add("wins", 0);
+        PF_PlayerData.UpdateUserStatistics(updates);
+    } 
+
 
     public void resetLevel(string levelName)
     {
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
-
-    public void switchCharacter()
+    
+        public void switchCharacter()
     {
 
         bool switched = false;
@@ -146,14 +217,11 @@ public class HUDscript : MonoBehaviour {
     {
         b.transform.position = center;
         b.setStorage(0);
-        
     }
     void storeCharacter(ball b)
     {
         b.transform.position = storage;
         b.setStorage(1);
-        
-
     }
     void storeAllCharacters()
     {
