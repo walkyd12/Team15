@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class trashCan : MonoBehaviour
 {
-    bool smashed = false;
-
-    void OnCollisionEnter(Collision c)
-    {
-        
-        smashed = true;
-    }
     void OnTriggerStay(Collider other)
     {
+        Vector3 positionOfTrash = gameObject.transform.position;
+        Vector3 positionOfBall = other.transform.position;
+        Vector3 dir = positionOfTrash - positionOfBall;
+        float mag = dir.magnitude;
+        dir = dir.normalized;
+        dir = dir * 2000 * (1/(mag));
+        print(mag);
 
-        if (smashed == true)
-        {
-            
-            Vector3 dir = new Vector3(500, -1000, 0);
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
-        }
+         
     }
     void Start()
     {
