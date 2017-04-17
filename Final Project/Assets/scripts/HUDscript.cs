@@ -27,6 +27,7 @@ public class HUDscript : MonoBehaviour {
         Chihuahua = Instantiate(ChihuahuaPrefab, center, transform.rotation);
         storeAllCharacters();
         switchCharacter();
+        
     }
 	
 	// Update is called once per frame
