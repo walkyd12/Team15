@@ -1493,11 +1493,11 @@ namespace PlayFab.ClientModels
         /// <summary>
         /// The version of the leaderboard to get, when UseSpecificVersion is true.
         /// </summary>
-        public int Version;
+        public int? Version;
         /// <summary>
         /// If true, uses the specified version. If false, gets the most recent version.
         /// </summary>
-        public bool UseSpecificVersion;
+        public bool? UseSpecificVersion;
         /// <summary>
         /// If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
         /// </summary>
@@ -1547,11 +1547,11 @@ namespace PlayFab.ClientModels
         /// <summary>
         /// The version of the leaderboard to get, when UseSpecificVersion is true.
         /// </summary>
-        public int Version;
+        public int? Version;
         /// <summary>
         /// If true, uses the specified version. If false, gets the most recent version.
         /// </summary>
-        public bool UseSpecificVersion;
+        public bool? UseSpecificVersion;
         /// <summary>
         /// If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
         /// </summary>
@@ -1628,11 +1628,11 @@ namespace PlayFab.ClientModels
         /// <summary>
         /// The version of the leaderboard to get, when UseSpecificVersion is true.
         /// </summary>
-        public int Version;
+        public int? Version;
         /// <summary>
         /// If true, uses the specified version. If false, gets the most recent version.
         /// </summary>
-        public bool UseSpecificVersion;
+        public bool? UseSpecificVersion;
         /// <summary>
         /// If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
         /// </summary>
@@ -1696,11 +1696,11 @@ namespace PlayFab.ClientModels
         /// <summary>
         /// The version of the leaderboard to get, when UseSpecificVersion is true.
         /// </summary>
-        public int Version;
+        public int? Version;
         /// <summary>
         /// If true, uses the specified version. If false, gets the most recent version.
         /// </summary>
-        public bool UseSpecificVersion;
+        public bool? UseSpecificVersion;
         /// <summary>
         /// If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
         /// </summary>
@@ -2159,6 +2159,7 @@ namespace PlayFab.ClientModels
         /// <summary>
         /// Array of items purchased.
         /// </summary>
+        [Obsolete("Use '' instead", false)]
         public List<ItemInstance> Items;
     }
 
@@ -2651,11 +2652,6 @@ namespace PlayFab.ClientModels
         /// </summary>
         public string ServerAuthCode;
         /// <summary>
-        /// OAuth 2.0 access token obtained on the client by calling the getAccessToken() Google client API.
-        /// </summary>
-        [Obsolete("Use 'ServerAuthCode' instead", true)]
-        public string AccessToken;
-        /// <summary>
         /// If another user is already linked to the account, unlink the other user and re-link.
         /// </summary>
         public bool? ForceLink;
@@ -2870,10 +2866,6 @@ namespace PlayFab.ClientModels
     public class LoginWithAndroidDeviceIDRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Android device identifier for the user's device.
         /// </summary>
         public string AndroidDeviceId;
@@ -2886,9 +2878,21 @@ namespace PlayFab.ClientModels
         /// </summary>
         public string AndroidDevice;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Android device.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -2899,17 +2903,25 @@ namespace PlayFab.ClientModels
     public class LoginWithCustomIDRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Custom unique identifier for the user, generated by the title.
         /// </summary>
         public string CustomId;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Custom ID.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -2941,17 +2953,25 @@ namespace PlayFab.ClientModels
     public class LoginWithFacebookRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Unique identifier from Facebook for the user.
         /// </summary>
         public string AccessToken;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Facebook account.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -2962,17 +2982,25 @@ namespace PlayFab.ClientModels
     public class LoginWithGameCenterRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Unique Game Center player id.
         /// </summary>
         public string PlayerId;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Game Center id.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -2983,22 +3011,25 @@ namespace PlayFab.ClientModels
     public class LoginWithGoogleAccountRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode() (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
         /// </summary>
         public string ServerAuthCode;
         /// <summary>
-        /// OAuth 2.0 access token obtained on the client by calling the getAccessToken() Google client API.
-        /// </summary>
-        [Obsolete("Use 'ServerAuthCode' instead", true)]
-        public string AccessToken;
-        /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Google account.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -3008,10 +3039,6 @@ namespace PlayFab.ClientModels
     [Serializable]
     public class LoginWithIOSDeviceIDRequest : PlayFabRequestCommon
     {
-        /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
         /// <summary>
         /// Vendor-specific iOS identifier for the user's device.
         /// </summary>
@@ -3025,22 +3052,30 @@ namespace PlayFab.ClientModels
         /// </summary>
         public string DeviceModel;
         /// <summary>
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
+        /// </summary>
+        public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
+        /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this iOS device.
-        /// </summary>
-        public bool? CreateAccount;
     }
 
     [Serializable]
     public class LoginWithKongregateRequest : PlayFabRequestCommon
     {
-        /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
         /// <summary>
         /// Numeric user ID assigned by Kongregate
         /// </summary>
@@ -3050,13 +3085,25 @@ namespace PlayFab.ClientModels
         /// </summary>
         public string AuthTicket;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Kongregate account.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
     }
 
     [Serializable]
@@ -3084,17 +3131,25 @@ namespace PlayFab.ClientModels
     public class LoginWithSteamRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Authentication token for the user, returned as a byte array from Steam, and converted to a string (for example, the byte 0x08 should become "08").
         /// </summary>
         public string SteamTicket;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Steam account.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -3105,17 +3160,25 @@ namespace PlayFab.ClientModels
     public class LoginWithTwitchRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// Token issued by Twitch's API for the user.
         /// </summary>
         public string AccessToken;
         /// <summary>
-        /// Automatically create a PlayFab account if one is not currently linked to this Twitch account.
+        /// Automatically create a PlayFab account if one is not currently linked to this ID.
         /// </summary>
         public bool? CreateAccount;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
@@ -3713,10 +3776,6 @@ namespace PlayFab.ClientModels
     public class RegisterPlayFabUserRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
         /// PlayFab username for the account (3-20 characters)
         /// </summary>
         public string Username;
@@ -3736,6 +3795,22 @@ namespace PlayFab.ClientModels
         /// An optional parameter for setting the display name for this title.
         /// </summary>
         public string DisplayName;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
+        /// <summary>
+        /// Flags for which pieces of info to return for the user.
+        /// </summary>
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
     }
 
     [Serializable]
@@ -3763,11 +3838,7 @@ namespace PlayFab.ClientModels
     public class RegisterWithWindowsHelloRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
-        /// </summary>
-        public string TitleId;
-        /// <summary>
-        /// Player's user named used by Windows Hello.
+        /// Player's user name used by Windows Hello.
         /// </summary>
         public string UserName;
         /// <summary>
@@ -3778,6 +3849,18 @@ namespace PlayFab.ClientModels
         /// Device name.
         /// </summary>
         public string DeviceName;
+        /// <summary>
+        /// Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+        /// </summary>
+        public string TitleId;
+        /// <summary>
+        /// Base64 encoded body that is encrypted with the Title's public RSA key
+        /// </summary>
+        public string EncryptedRequest;
+        /// <summary>
+        /// Player secret that is used to verify API request signatures
+        /// </summary>
+        public string PlayerSecret;
         /// <summary>
         /// Flags for which pieces of info to return for the user.
         /// </summary>
