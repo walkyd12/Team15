@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGoal : MonoBehaviour {
+
     bool levelComplete = false;
     int bonesLeft;
 
@@ -11,6 +12,7 @@ public class LevelGoal : MonoBehaviour {
     public int goal = 0;
     // Use this for initialization
     void Start () {
+        
 		if(goal == 0)
         {
             countBones();
