@@ -14,7 +14,7 @@ public class firehydrant : MonoBehaviour {
 
     void OnCollisionEnter(Collision c)
     {
-        print("smashing!");
+       
         smashed = true;
     }
     void OnTriggerStay(Collider other)
@@ -22,7 +22,7 @@ public class firehydrant : MonoBehaviour {
 
         if (smashed == true)
         {
-            print("aaaaaa");
+           
             Vector3 dir = new Vector3(1000, 0, 0);
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
        
