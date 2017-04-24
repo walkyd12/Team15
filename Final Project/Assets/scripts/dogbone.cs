@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dogbone : MonoBehaviour {
     LevelGoal lg;
+    public bool isEaten = false;
     //GUIText gt;
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,8 @@ public class dogbone : MonoBehaviour {
         //trigger for collecting bones
         
         if (c.tag == "ball")
-        {  
+        {
+            isEaten = true;
             Destroy(gameObject);
         }
         lg.updateBones();

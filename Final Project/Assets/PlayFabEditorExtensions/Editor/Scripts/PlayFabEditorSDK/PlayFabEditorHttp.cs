@@ -7,11 +7,11 @@ using UnityEditor;
 using PlayFab.PfEditor.Json;
 using PlayFab.PfEditor.EditorModels;
 
-#if UNITY_5_4 || UNITY_5_5
+//#if UNITY_5_4 || UNITY_5_5
 using UnityEngine.Networking;
-#else
-    using UnityEngine.Experimental.Networking;
-#endif
+//#else
+//using UnityEngine.Experimental.Networking;
+//#endif
 
 namespace PlayFab.PfEditor
 {

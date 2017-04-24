@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class firehydrant : MonoBehaviour {
-    bool smashed = false;
+    public bool smashed = false;
     int score = 0;
     Animator ani;
 
