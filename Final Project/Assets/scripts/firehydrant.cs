@@ -16,7 +16,6 @@ public class firehydrant : MonoBehaviour {
     {
        
         smashed = true;
-        LevelGoal.points += 2;
     }
     void OnTriggerStay(Collider other)
     {

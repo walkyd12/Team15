@@ -21,12 +21,17 @@ public class dogbone : MonoBehaviour {
     {
         //trigger for collecting bones
         
-        if (c.tag == "ball")
+        if (c.tag == "bones")
         {
             isEaten = true;
-            LevelGoal.points += 5;
             Destroy(gameObject);
         }
+        else if (c.tag == "tiger")
+        {
+            isEaten = true;
+            Destroy(gameObject);
+        }
+
         lg.updateBones();
     
     }
