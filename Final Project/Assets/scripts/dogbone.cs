@@ -21,7 +21,7 @@ public class dogbone : MonoBehaviour {
     {
         //trigger for collecting bones
         
-        if (c.tag == "bones")
+        if (c.tag == "ball")
         {
             isEaten = true;
             Destroy(gameObject);
