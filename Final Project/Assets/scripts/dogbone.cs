@@ -24,9 +24,14 @@ public class dogbone : MonoBehaviour {
         if (c.tag == "ball")
         {
             isEaten = true;
-            LevelGoal.points += 5;
             Destroy(gameObject);
         }
+        else if (c.tag == "tiger")
+        {
+            isEaten = true;
+            Destroy(gameObject);
+        }
+
         lg.updateBones();
     
     }
