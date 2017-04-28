@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class LevelGoal : MonoBehaviour {
     public static int points;
     public static int wins;
+    public Text leaderboard;
     bool levelComplete = false;
     int bonesLeft;
 
@@ -42,12 +44,14 @@ public class LevelGoal : MonoBehaviour {
         this.GetComponent<GUIText>().text = t;
         if (bonesLeft == 0)
         {
-            LevelGoal.points += 10;
+            points += 10;
+            wins++;
             Dictionary<string, int> updates = new Dictionary<string, int>();
             updates.Add("points", LevelGoal.points);
             updates.Add("wins", LevelGoal.wins);
             PF_stuff.UpdateUserStatistics(updates);
             levelComplete = true;
+            
         }
     }
 }
