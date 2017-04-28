@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGoal : MonoBehaviour {
     public static int points;
@@ -44,14 +45,30 @@ public class LevelGoal : MonoBehaviour {
         this.GetComponent<GUIText>().text = t;
         if (bonesLeft == 0)
         {
+            levelComplete = true;
+            changeLevel();
             points += 10;
             wins++;
             Dictionary<string, int> updates = new Dictionary<string, int>();
             updates.Add("points", LevelGoal.points);
             updates.Add("wins", LevelGoal.wins);
             PF_stuff.UpdateUserStatistics(updates);
-            levelComplete = true;
+
             
         }
+    }
+
+    void changeLevel()
+    {
+        Scene s = SceneManager.GetActiveScene();
+        print(s.name);
+        if(s.name == "simple_level")
+        {
+            loadLevel("empty_level");
+        }
+    }
+    public void loadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
 }
