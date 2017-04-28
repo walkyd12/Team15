@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGoal : MonoBehaviour {
+    public static int points;
+    public static int wins;
     bool levelComplete = false;
     int bonesLeft;
 
@@ -40,6 +42,11 @@ public class LevelGoal : MonoBehaviour {
         this.GetComponent<GUIText>().text = t;
         if (bonesLeft == 0)
         {
+            LevelGoal.points += 10;
+            Dictionary<string, int> updates = new Dictionary<string, int>();
+            updates.Add("points", LevelGoal.points);
+            updates.Add("wins", LevelGoal.wins);
+            PF_stuff.UpdateUserStatistics(updates);
             levelComplete = true;
         }
     }

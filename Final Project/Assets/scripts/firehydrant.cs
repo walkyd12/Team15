@@ -22,7 +22,7 @@ public class firehydrant : MonoBehaviour {
 
         if (smashed == true)
         {
-           
+            LevelGoal.points += 5;
             Vector3 dir = new Vector3(1000, 0, 0);
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
        

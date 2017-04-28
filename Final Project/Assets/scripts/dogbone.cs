@@ -32,6 +32,7 @@ public class dogbone : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        LevelGoal.points += 5;
         lg.updateBones();
     
     }
