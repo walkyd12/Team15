@@ -7,9 +7,12 @@ using System;
 using System.Text;
 using UnityEngine;
 
-public class PF_stuff : MonoBehaviour {
+public class PF_stuff : MonoBehaviour
+{
     public static readonly Dictionary<string, int> userStatistics = new Dictionary<string, int>();
     public static int loggedin = 0;
+    public static string custom_id;
+    public static List<PlayerLeaderboardEntry> LB = new List<PlayerLeaderboardEntry>();
     public static string UserId
     {
         get;
@@ -48,15 +51,15 @@ public class PF_stuff : MonoBehaviour {
     public static void login(string x)
     {
         System.Random rnd = new System.Random();
-        string customId = GetRandomString(rnd, 16);
+        custom_id = GetRandomString(rnd, 16);
         var request = new LoginWithCustomIDRequest
         {
             TitleId = "792",
             CreateAccount = true,
-            CustomId = customId
+            CustomId = custom_id
         };
         print("CustomID: ");
-        print(customId);
+        print(custom_id);
 
         PlayFabClientAPI.LoginWithCustomID(request, OnLoggedIn, OnLoginError);
     }
@@ -84,12 +87,30 @@ public class PF_stuff : MonoBehaviour {
     {
         PF_Bridge.RaiseCallbackSuccess("User Statistics Loaded", PlayFabAPIMethods.UpdateUserStatistics, MessageDisplayStyle.none);
         print("Update User Statistics Success!");
-       
+
     }
 
     private static void OnUpdateUserStatisticsError(PlayFabError error)
     {
         PF_Bridge.RaiseCallbackError(error.ErrorMessage, PlayFabAPIMethods.UpdateUserStatistics, MessageDisplayStyle.error);
         print("Update User Statistics Error!");
+    }
+
+
+    public static void getleaderboard(string x)
+    {
+        var request = new GetLeaderboardRequest()
+        {
+            StatisticName = "points",
+            StartPosition = 0,
+            MaxResultsCount = 10
+        };
+        PlayFabClientAPI.GetLeaderboard(request, result =>
+        {
+            LB = result.Leaderboard;
+            PF_Bridge.RaiseCallbackSuccess(string.Empty, PlayFabAPIMethods.GetFriendsLeaderboard, MessageDisplayStyle.none);
+        }, PF_Bridge.PlayFabErrorCallback);
+
+        print(LB);
     }
 }

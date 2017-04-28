@@ -18,7 +18,7 @@ public class trashCan : MonoBehaviour
         float mag = dir.magnitude;
         dir = dir.normalized;
         dir = dir * 2000 * (1/(mag));
-        print(mag);
+        //print(mag);
 
         other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);
          
