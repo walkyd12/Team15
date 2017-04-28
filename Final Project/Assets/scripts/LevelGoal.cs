@@ -46,15 +46,16 @@ public class LevelGoal : MonoBehaviour {
         if (bonesLeft == 0)
         {
             levelComplete = true;
-            changeLevel();
+            
             points += 10;
             wins++;
             Dictionary<string, int> updates = new Dictionary<string, int>();
             updates.Add("points", LevelGoal.points);
             updates.Add("wins", LevelGoal.wins);
             PF_stuff.UpdateUserStatistics(updates);
+            changeLevel();
 
-            
+
         }
     }
 
