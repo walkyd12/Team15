@@ -65,8 +65,21 @@ public class LevelGoal : MonoBehaviour {
         print(s.name);
         if(s.name == "simple_level")
         {
-            loadLevel("empty_level");
+            loadLevel("level1");
         }
+        else if (s.name == "level1")
+        {
+            loadLevel("level2");
+        }
+        else if (s.name == "level2")
+        {
+            loadLevel("level3");
+        }
+        else if (s.name == "level3")
+        {
+            loadLevel("level4");
+        }
+
     }
     public void loadLevel(string levelName)
     {
