@@ -20,21 +20,16 @@ public class dogbone : MonoBehaviour {
     void OnTriggerEnter(Collider c)
     {
         //trigger for collecting bones
-        
-        if (c.tag == "ball")
+        if (isEaten == false)
         {
-            isEaten = true;
-            Destroy(gameObject);
+            if (c.tag == "ball" || c.tag == "tiger")
+            {
+                isEaten = true;
+                Destroy(gameObject);
+                LevelGoal.points += 5;
+                lg.updateBones();
+            }
         }
-        else if (c.tag == "tiger")
-        {
-            isEaten = true;
-            Destroy(gameObject);
-        }
-
-        LevelGoal.points += 5;
-        lg.updateBones();
-    
     }
 
 }
