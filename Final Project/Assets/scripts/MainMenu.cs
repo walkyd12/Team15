@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour {
             LS=LS+PF_stuff.LB[i].Position.ToString()+"         "+PF_stuff.LB[i].PlayFabId.ToString()+" "+PF_stuff.LB[i].StatValue.ToString()+"\n";
         }
         print(LS);
+
+        LS = LS + "\nYour Player ID: " + PF_stuff.custom_id;
     }
 
     public void login(string x)
