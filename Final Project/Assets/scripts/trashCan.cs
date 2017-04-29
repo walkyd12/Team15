@@ -6,6 +6,7 @@ public class trashCan : MonoBehaviour
 {
     
     public trashCan can;
+    public float strength = 2000;
 
 
     void OnTriggerStay(Collider other)
@@ -17,7 +18,7 @@ public class trashCan : MonoBehaviour
             Vector3 dir = positionOfTrash - positionOfBall;
             float mag = dir.magnitude;
             dir = dir.normalized;
-            dir = dir * 2000 * (1 / (mag));
+            dir = dir * strength * (1 / (mag));
             //print(mag);
 
             other.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Force);

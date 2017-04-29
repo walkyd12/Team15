@@ -23,7 +23,7 @@ public class bounce : MonoBehaviour
             //Vector3 dir = c.contacts[0].point - transform.position;
 
             //This returns the normal line from the collsion
-            //as in the line that points directly out of the block
+            //as in the line that points directly out of the block where the player hit
             Vector3 dir = c.contacts[0].normal;
             //  Normalize it  (not the same thing as a normal line)
             dir = dir.normalized;
