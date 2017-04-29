@@ -82,7 +82,9 @@ public class HUDscript : MonoBehaviour {
 
     public void mainMenu()
     {
+        MainMenu.LS = "";
         LevelGoal.loadLevel("startscreen");
+        PF_stuff.getleaderboard("hello");
     }
     public void switchCharacter()
     {

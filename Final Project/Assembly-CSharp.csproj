@@ -157,6 +157,7 @@
      <Compile Include="Assets\scripts\dogbone.cs" />
      <Compile Include="Assets\scripts\firehydrant.cs" />
      <Compile Include="Assets\scripts\leaderboardtextcontroller.cs" />
+     <Compile Include="Assets\scripts\logintextcontroller.cs" />
      <Compile Include="Assets\scripts\tiger.cs" />
      <Compile Include="Assets\scripts\trashCan.cs" />
      <None Include="Assets\PlayFabSdk\link.xml" />
