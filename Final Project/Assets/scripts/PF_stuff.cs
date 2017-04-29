@@ -13,11 +13,13 @@ public class PF_stuff : MonoBehaviour
     public static bool loggedin = false;
     public static string custom_id;
     public static List<PlayerLeaderboardEntry> LB = new List<PlayerLeaderboardEntry>();
+    public static string thisistheid;
     public static string UserId
     {
         get;
         private set;
     }
+
 
     private static void OnLoggedIn(LoginResult result)
     {

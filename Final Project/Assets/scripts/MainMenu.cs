@@ -25,12 +25,16 @@ public class MainMenu : MonoBehaviour {
         }
         print(LS);
 
-        LS = LS + "\nYour Player ID: " + PF_stuff.custom_id;
+        LS = LS + "\nYour Player ID: " + PF_stuff.UserId;
     }
 
     public void login(string x)
     {
-        PF_stuff.login("hello");
+        if (!PF_stuff.loggedin)
+        {
+            PF_stuff.login("hello");
+
+        }
     }
 
 	// Use this for initialization
