@@ -18,10 +18,10 @@ public class MainMenu : MonoBehaviour {
     public void leaderBoard(string string_name)
     {
         PF_stuff.getleaderboard("hello");
-        LS = "Rank    Player ID              Points\n";
+        LS = "Rank    Player ID                    Points\n";
         for(int i=0;i<10;i++)
         {
-            LS=LS+PF_stuff.LB[i].Position.ToString()+"         "+PF_stuff.LB[i].PlayFabId.ToString()+" "+PF_stuff.LB[i].StatValue.ToString()+"\n";
+            LS=LS+PF_stuff.LB[i].Position.ToString()+"          "+PF_stuff.LB[i].PlayFabId.ToString()+" "+PF_stuff.LB[i].StatValue.ToString()+"\n";
         }
         print(LS);
 
