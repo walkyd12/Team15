@@ -84,7 +84,7 @@ public class LevelGoal : MonoBehaviour {
         }
 
     }
-    public void loadLevel(string levelName)
+    public static void loadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }

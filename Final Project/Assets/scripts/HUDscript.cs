@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -79,6 +80,10 @@ public class HUDscript : MonoBehaviour {
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
 
+    public void mainMenu()
+    {
+        LevelGoal.loadLevel("startscreen");
+    }
     public void switchCharacter()
     {
 
