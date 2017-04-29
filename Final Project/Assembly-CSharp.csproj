@@ -139,6 +139,7 @@
      <Compile Include="Assets\PlayFabSdk\Shared\SignalR.NET20\Transports\OptionalEventSignal.cs" />
      <Compile Include="Assets\PlayFabSdk\Shared\SignalR.NET20\Transports\ServerSentEventsTransport.cs" />
      <Compile Include="Assets\PlayFabSdk\Shared\SignalR.NET20\Transports\SseEvent.cs" />
+     <Compile Include="Assets\makeHydrant.cs" />
      <Compile Include="Assets\scripts\HUDscript.cs" />
      <Compile Include="Assets\scripts\LevelGoal.cs" />
      <Compile Include="Assets\scripts\MainMenu.cs" />
@@ -148,12 +149,14 @@
      <Compile Include="Assets\scripts\PF_StaticsAndHelpers\PF_Authentication.cs" />
      <Compile Include="Assets\scripts\PF_StaticsAndHelpers\PF_Bridge.cs" />
      <Compile Include="Assets\scripts\PF_StaticsAndHelpers\PF_PlayerData.cs" />
+     <Compile Include="Assets\scripts\PF_stuff.cs" />
      <Compile Include="Assets\scripts\Scroll.cs" />
      <Compile Include="Assets\scripts\ball.cs" />
+     <Compile Include="Assets\scripts\bounce.cs" />
      <Compile Include="Assets\scripts\cameraBehavior.cs" />
      <Compile Include="Assets\scripts\dogbone.cs" />
      <Compile Include="Assets\scripts\firehydrant.cs" />
-     <Compile Include="Assets\scripts\makeHydrant.cs" />
+     <Compile Include="Assets\scripts\tiger.cs" />
      <Compile Include="Assets\scripts\trashCan.cs" />
      <None Include="Assets\PlayFabSdk\link.xml" />
  <Reference Include="UnityEngine.UI">

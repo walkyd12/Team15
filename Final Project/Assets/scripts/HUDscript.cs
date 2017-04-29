@@ -71,8 +71,11 @@ public class HUDscript : MonoBehaviour {
         PlayFabClientAPI.LoginWithCustomID(request, OnLoggedIn, OnLoginError);
     }
 
-    public void resetLevel(string levelName)
+    public void resetLevel()
     {
+        Scene s = SceneManager.GetActiveScene();
+        string levelName = s.name;
+        print("aaabbbccc");
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
 

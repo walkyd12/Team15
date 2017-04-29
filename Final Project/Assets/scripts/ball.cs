@@ -15,6 +15,9 @@ public class ball : MonoBehaviour
     bool holdAllowed = true;
     bool released = false;
     bool holding = false;
+    bool smoothed = false;
+    int smoothCounter = 0;
+    float time = .1f;
     public LayerMask collisionMask;
     bool inStorage;
     //currentCharacter: set to 1 for hugo, 2  for chihuahua, 3 for StBernard
@@ -40,6 +43,7 @@ public class ball : MonoBehaviour
 
     void Update()
     {
+        
         //bounce();  //calculates bounce
         if (inStorage == false)
         {
@@ -52,6 +56,7 @@ public class ball : MonoBehaviour
         {
             inStorage = false;
             holdAllowed = true;
+            time = .1f;
         }
         else
         {
@@ -81,11 +86,15 @@ public class ball : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
             {
-                grab(target);
+                if (holdAllowed == true)
+                {
+                    grab(target);
+                }
             }
             if (holding == true)
             {
-                transform.position = target;
+                //float step = rb.velocity.magnitude * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, target, 3);
                 if (fiveC >= 5)
                 {
                     fiveC = 0;
@@ -123,7 +132,7 @@ public class ball : MonoBehaviour
     //called when the ball should be released. (when the ball is let go by player, or moved out of hold zone)
     void release()
     {
-        rb.velocity = (calThrow(lastFive)) * 25;
+        rb.velocity = (calThrow(lastFive)) * 15;
         float spinDir = Random.Range(-.5f, .5f);
         Vector3 v = new Vector3(0, 0, spinDir);
         rb.AddTorque(v);
@@ -205,5 +214,38 @@ public class ball : MonoBehaviour
     public void allowHold()
     {
         holdAllowed = true;
+    }
+
+    public void setSmooth()
+    {
+        smoothed = true;
+    }
+    public bool getSmooth()
+    {
+        return smoothed;
+    }
+    public int getSmoothCounter()
+    {
+        return smoothCounter;
+    }
+    public void addToSmoothCounter()
+    {
+        smoothCounter++;
+    }
+    public float lowerTime(float decrementBy)
+    {
+        if (time > .007)
+        {
+            time = time - decrementBy;
+        }
+        else if(time > .002)
+        {
+            time = time - .001f;
+        }
+        return time;
+    }
+    public float getTime()
+    {
+        return time;
     }
 }

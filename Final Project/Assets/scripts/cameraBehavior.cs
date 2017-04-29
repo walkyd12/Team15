@@ -9,7 +9,6 @@ public class cameraBehavior : MonoBehaviour {
     float diffX;
     float diffY;
     float zoom = 13;
-    bool ballIsReleased;
     public Camera thisCamera;
     
     Vector3 velocity = Vector3.zero;
@@ -19,15 +18,26 @@ public class cameraBehavior : MonoBehaviour {
        
 	}
 	
-	void Update () {
+	void LateUpdate () {
         currentBall = HUD.getCurrentBall();
-        ballLocation = trackBall(currentBall);
-        if (ballIsReleased == true)
-        { 
-            Vector3 posChange = transform.position;
-            Vector3 smooth = (Vector3.SmoothDamp(transform.position, ballLocation, ref velocity, .08f));
+        ballLocation = currentBall.transform.position;
+        bool smoothed = currentBall.getSmooth();
+        Vector3 smooth;
+        float time = currentBall.getTime();
+        if (currentBall.getHoldAllowed() == false)
+        {
+            time = currentBall.lowerTime(.006f);
+            if (smoothed == false)
+            {
+                currentBall.setSmooth();
+            }
+            smooth = (Vector3.SmoothDamp(transform.position, ballLocation, ref velocity, time));
             smooth.z = -10;
             transform.position = smooth;
+        }
+        else
+        {
+            transform.position = new Vector3(0, 0, -10);
         }
         if(Input.GetAxis("Mouse ScrollWheel") > 0)
         {
@@ -44,7 +54,6 @@ public class cameraBehavior : MonoBehaviour {
     Vector3 trackBall(ball b)
     {
         Vector3 pos = b.transform.position;
-        ballIsReleased = b.getReleased();
         return pos;
     }
 
