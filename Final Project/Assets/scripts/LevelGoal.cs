@@ -55,6 +55,7 @@ public class LevelGoal : MonoBehaviour {
                 updates.Add("points", LevelGoal.points);
                 updates.Add("wins", LevelGoal.wins);
                 PF_stuff.UpdateUserStatistics(updates);
+                PF_stuff.getleaderboard("hello");
             }
             changeLevel();
 
@@ -68,7 +69,7 @@ public class LevelGoal : MonoBehaviour {
         print(s.name);
         if(s.name == "simple_level")
         {
-            loadLevel("level1");
+            loadLevel("level2");
         }
         else if (s.name == "level1")
         {
