@@ -18,11 +18,15 @@ public class bounce : MonoBehaviour
         // If the object we hit is the enemy
         if (c.gameObject.tag == "ball")
         {
-            
+
             // Calculate Angle Between the collision point and the player
-            Vector3 dir = c.contacts[0].point - transform.position;
-            // We then get the opposite (-Vector3) and normalize it
-            dir = -dir.normalized;
+            //Vector3 dir = c.contacts[0].point - transform.position;
+
+            //This returns the normal line from the collsion
+            //as in the line that points directly out of the block
+            Vector3 dir = c.contacts[0].normal;
+            //  Normalize it  (not the same thing as a normal line)
+            dir = dir.normalized;
             // And finally we add force in the direction of dir and multiply it by force. 
             // This will push back the player
             c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Impulse);
