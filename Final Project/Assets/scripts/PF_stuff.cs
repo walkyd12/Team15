@@ -10,7 +10,7 @@ using UnityEngine;
 public class PF_stuff : MonoBehaviour
 {
     public static readonly Dictionary<string, int> userStatistics = new Dictionary<string, int>();
-    public static int loggedin = 0;
+    public static bool loggedin = false;
     public static string custom_id;
     public static List<PlayerLeaderboardEntry> LB = new List<PlayerLeaderboardEntry>();
     public static string UserId
@@ -23,7 +23,8 @@ public class PF_stuff : MonoBehaviour
     {
         UserId = result.PlayFabId;
         print("login successful");
-        loggedin = 1;
+        loggedin = true;
+        getleaderboard("Hi");
     }
 
     private static void OnLoginError(PlayFabError error)
@@ -111,6 +112,5 @@ public class PF_stuff : MonoBehaviour
             PF_Bridge.RaiseCallbackSuccess(string.Empty, PlayFabAPIMethods.GetFriendsLeaderboard, MessageDisplayStyle.none);
         }, PF_Bridge.PlayFabErrorCallback);
 
-        print(LB);
     }
 }
