@@ -1,11 +1,10 @@
-﻿sing System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
-{
+public class MainMenu : MonoBehaviour {
 
     public static string LS = "";
 
@@ -20,9 +19,9 @@ public class MainMenu : MonoBehaviour
     {
         PF_stuff.getleaderboard("hello");
         LS = "Rank    Player ID    Points";
-        for (int i = 0; i < 10; i++)
+        for(int i=0;i<10;i++)
         {
-            LS = LS + PF_stuff.LB[i].Position.ToString() + " " + PF_stuff.LB[i].PlayFabId.ToString() + " " + PF_stuff.LB[i].StatValue.ToString() + "\n";
+            LS=LS+PF_stuff.LB[i].Position.ToString()+" "+PF_stuff.LB[i].PlayFabId.ToString()+" "+PF_stuff.LB[i].StatValue.ToString()+"\n";
         }
     }
 
@@ -31,15 +30,13 @@ public class MainMenu : MonoBehaviour
         PF_stuff.login("hello");
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 }
