@@ -11,8 +11,6 @@ public class MainMenu : MonoBehaviour {
     public void loadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
-        if (!PF_stuff.loggedin)
-            PF_stuff.login("Hello");
     }
 
     public void leaderBoard(string string_name)
