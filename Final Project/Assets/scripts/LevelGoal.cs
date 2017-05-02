@@ -69,7 +69,7 @@ public class LevelGoal : MonoBehaviour {
         print(s.name);
         if(s.name == "simple_level")
         {
-            loadLevel("level2");
+            loadLevel("level1");
         }
         else if (s.name == "level1")
         {
@@ -82,6 +82,14 @@ public class LevelGoal : MonoBehaviour {
         else if (s.name == "level3")
         {
             loadLevel("level4");
+        }
+        else if (s.name == "level4")
+        {
+            loadLevel("level5");
+        }
+        else
+        {
+            loadLevel("startscreen");
         }
 
     }
