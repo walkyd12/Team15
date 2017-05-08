@@ -1,0 +1,131 @@
+Initialize engine version: 5.5.1f1 (88d00a7498cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940M         (ID=0x1347)
+    Vendor:   NVIDIA
+    VRAM:     1996 MB
+    Driver:   21.20.16.4550
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.037 seconds
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Garrett Sippel\Documents\GitHub\Team15\Final Project\BowWowBall_Data\Managed\System.dll (this message is harmless)
+desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 4.792894 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.293638 ms
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 580.
+Total: 0.555852 ms (FindLiveObjects: 0.114172 ms CreateObjectMapping: 0.022518 ms MarkObjects: 0.349234 ms  DeleteObjects: 0.059654 ms)
+
+aaabbbccc
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.016495 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 580.
+Total: 0.553877 ms (FindLiveObjects: 0.077037 ms CreateObjectMapping: 0.022913 ms MarkObjects: 0.444049 ms  DeleteObjects: 0.007111 ms)
+
+simple_level
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.465978 ms
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 532.
+Total: 1.466865 ms (FindLiveObjects: 0.171061 ms CreateObjectMapping: 0.121679 ms MarkObjects: 0.902322 ms  DeleteObjects: 0.269432 ms)
+
+aaabbbccc
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.521482 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 532.
+Total: 0.668840 ms (FindLiveObjects: 0.084543 ms CreateObjectMapping: 0.025283 ms MarkObjects: 0.549926 ms  DeleteObjects: 0.008296 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Exception: Must be logged in to call this method
+  at PlayFab.PlayFabClientAPI.GetLeaderboard (PlayFab.ClientModels.GetLeaderboardRequest request, System.Action`1 resultCallback, System.Action`1 errorCallback, System.Object customData, System.Collections.Generic.Dictionary`2 extraHeaders) [0x00000] in <filename unknown>:0 
+  at PF_stuff.getleaderboard (System.String x) [0x00000] in <filename unknown>:0 
+  at HUDscript.mainMenu () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Button.Press () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IPointerClickHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 0.616297 ms
+
+Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 422.
+Total: 0.308938 ms (FindLiveObjects: 0.024493 ms CreateObjectMapping: 0.018962 ms MarkObjects: 0.231111 ms  DeleteObjects: 0.033975 ms)
+
+CustomID: 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+k9Edv6nOixh57ofn
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+login successful
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Rank    Player ID                    Points
+0          E9682B522990006E 475
+1          579EB8462ED09708 290
+2          18ECBEB0BAD5FE01 255
+3          642BA3C07DEF436F 250
+4          95AFD58400AF8CE7 220
+5          28DE5E702A7F9F8B 190
+6          8AADD204A088C834 180
+7          4A1748CA3A584C0F 160
+8          8C36DD626B4BDDB9 155
+9          686F2A091941C9C0 140
+
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.527803 ms
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 585.
+Total: 0.437333 ms (FindLiveObjects: 0.032790 ms CreateObjectMapping: 0.028444 ms MarkObjects: 0.316839 ms  DeleteObjects: 0.058864 ms)
+
