@@ -67,7 +67,11 @@ public class LevelGoal : MonoBehaviour {
     {
         Scene s = SceneManager.GetActiveScene();
         print(s.name);
-        if(s.name == "simple_level")
+        if (s.name == "tutOne")
+        {
+            loadLevel("simple_level");
+        }
+        else if (s.name == "simple_level")
         {
             loadLevel("level1");
         }
